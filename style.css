@@ -1,27 +1,53 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
 * {
+  font-family: 'Rubik';
   box-sizing: border-box;
 }
 
 body {
-  padding: 0;
+  display: grid;
   margin: 0;
+  padding: 10vh 20vw;
+  height: 100vh;
+  max-height: 100vh;
+
+  place-content: center;
 }
 
 img {
   max-width: 100%;
-  height: auto;
+  max-height: 100%;
+  height: 100%;
 
+  object-fit: cover;
   opacity: 0;
 }
 
 .container {
-  display: grid;
-  position: relative;
-  max-height: 80vh;
+  display: grid !important;
+  gap: 2vh;
 
-  place-content: center;
+  grid-template-columns: repeat(2, 1fr);
+  grid-template-rows: repeat(2, 1fr);
 
-  overflow: hidden;
+  align-items: stretch;
+  justify-content: center;
+}
+
+.glass-1 {
+  grid-column: 1/2;
+  grid-row: 1/3;
+}
+
+.glass-2 {
+  grid-column: 2/3;
+  grid-row: 1/1;
+}
+
+.glass-3 {
+  grid-column: 2/3;
+  grid-row: 2/3;
 }
 
 [data-component='fractal-glass'] {
@@ -40,6 +66,16 @@ img {
   z-index: 2;
 }
 
+[data-element='glass'] > div:first-child,
+[data-element='glass'] > div:first-child::before {
+  border-radius: 70px 0 0 70px;
+}
+
+[data-element='glass'] > div:last-child,
+[data-element='glass'] > div:last-child::before {
+  border-radius: 0 70px 70px 0;
+}
+
 [data-element='glass'] > div {
   position: absolute;
   top: 0;
@@ -49,6 +85,8 @@ img {
 
   background-size: 100% 100%;
   background-repeat: round;
+
+  user-select: none;
 
   opacity: 1;
   backdrop-filter: blur(1px);
@@ -63,4 +101,31 @@ img {
 
   background: linear-gradient(90deg, rgba(0, 0, 0, 0.1) 10%, rgba(4, 9, 20, 0) 70%, rgba(0, 0, 0, 0.1) 110%);
   backdrop-filter: blur();
+}
+
+.from {
+  text-transform: uppercase;
+  font-size: minmax(16px, 1.5vw);
+  font-weight: bold;
+  position: absolute;
+  top: 2vh;
+  left: 2vw;
+}
+
+.links {
+  display: flex;
+  gap: 1vw;
+  padding: 0;
+  margin: 5px 0 0 0;
+
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+
+  font-size: 13px;
+  font-weight: normal;
+}
+
+.links a {
+  color: #000;
 }
